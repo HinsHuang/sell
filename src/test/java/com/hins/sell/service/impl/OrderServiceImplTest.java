@@ -39,10 +39,8 @@ public class OrderServiceImplTest {
         OrderDetail o2 = new OrderDetail();
         o2.setProductId("HH201909221100");
         o2.setProductQuantity(3);
-
         orderDetailList.add(o1);
         orderDetailList.add(o2);
-
         orderDTO.setOrderDetailList(orderDetailList);
 
         orderService.create(orderDTO);
