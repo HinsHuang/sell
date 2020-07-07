@@ -10,6 +10,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+
 server:
   context-path: /sell
 
@@ -20,3 +21,7 @@ server:
 #  file: /var/log/tomcat/sell.log
 #  level:
 #    com.hins.sell.LoggerTest: debug
+
+wechat:
+  mpAppid:  wx7c91575fba9b5f9d
+  mpAppSecret: a767895c00ec4d4e743df548a2e1f03b
