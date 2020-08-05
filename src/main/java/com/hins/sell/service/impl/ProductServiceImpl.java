@@ -9,6 +9,9 @@ import com.hins.sell.repository.ProductInfoRepository;
 import com.hins.sell.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,12 +21,15 @@ import java.util.List;
 
 @Service
 @Slf4j
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductInfoRepository productInfoRepository;
 
     @Override
+//    @Cacheable(cacheNames = "product", key = "123")
+//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return productInfoRepository.findOne(productId);
     }
@@ -39,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+//    @CachePut(cacheNames = "product", key = "123")
+//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return productInfoRepository.save(productInfo);
     }
@@ -76,6 +84,38 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(stock);
             productInfoRepository.save(productInfo);
         }
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productInfoRepository.findOne(productId);
+        if (productInfo == null) {
+            log.error("【商品下架】商品不存在 productId={}", productId);
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return productInfoRepository.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = productInfoRepository.findOne(productId);
+        if (productInfo == null) {
+            log.error("【商品上架】商品不存在 productId={}", productId);
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productInfoRepository.save(productInfo);
     }
 
 }

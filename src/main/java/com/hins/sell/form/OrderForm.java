@@ -9,7 +9,7 @@ public class OrderForm {
     @NotEmpty(message = "姓名必填")
     private String name;
 
-    @NotEmpty(message = "手机码必填")
+    @NotEmpty(message = "手机号必填")
     private String phone;
 
     @NotEmpty(message = "地址必填")

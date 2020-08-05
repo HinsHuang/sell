@@ -1,7 +1,9 @@
 package com.hins.sell.exceptions;
 
 import com.hins.sell.enums.ResultEnum;
+import lombok.Getter;
 
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;
