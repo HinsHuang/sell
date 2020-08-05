@@ -25,18 +25,18 @@ server:
 #    com.hins.sell.LoggerTest: debug
 
 wechat:
-  mpAppidHins:  wx7c91575fba9b5f9d
-  mpAppSecretHins: a767895c00ec4d4e743df548a2e1f03b
-  mpAppid:  wxc2c21e60d0bf85a5
-  mpAppSecret: ce456cbf7a9e7a913cbf289a14ab69cd
-  openAppid: wxc2c21e60d0bf85a5
-  openAppSecret: 397d811fcc2c8e3f3e5f23071b3957a0
-  mchId: 1336674701
-  mchKey: iSoftStoneiSoftStoneiSoftStone32
+  mpAppidHins:  wx7c91575fxxxxxx
+  mpAppSecretHins: a767895c00ecxxxxxxxx
+  mpAppid:  wxc2c21e60xxxxxx
+  mpAppSecret: ce456cbf7a9e7a913cxxxxxx
+  openAppid: wxc2c21exxxxxx
+  openAppSecret: 397d811fcc2c8e3f3exxxxxx
+  mchId: 13xxxxx
+  mchKey: xxxxxxxxx
   keyPath: /var/wechat_cert/h5.p12
   notifyUrl: http://hins.natapp4.cc/sell/pay/notify
   templateId:
-    orderStatus: gWn_cKI3Ifwn62v-87RP6CsleBY2TDyfsE-Hiz0AWuM
+    orderStatus: gWn_cKI3Ifwn62v-87RP6Cxxxxxx
 
 projectUrl:
   wechatMpAuthorize: http://hins.natapp4.cc
